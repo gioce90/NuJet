@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+	
+	<PropertyGroup Condition="'$(TF_BUILD)' == 'true' Or '$(GITHUB_ACTIONS)' == 'true'">
+		<IsLocal>false</IsLocal>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TF_BUILD)' != 'true' And '$(GITHUB_ACTIONS)' != 'true'">
+		<IsLocal>true</IsLocal>
+	</PropertyGroup>
+	
+	<!--TODO: need to investigate how to recognize other remote CI/CD pipelines-->
+	
+</Project>

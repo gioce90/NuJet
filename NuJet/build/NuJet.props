@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+	<!-- This file will be "inherited" by the CONSUMER of NuJet -->
+
+	<!-- __________________________________________ -->
+	<!-- Package common section						-->
+	<!-- __________________________________________ -->
+
+	<PropertyGroup>
+		<!-- Automatically generate package on build (equivalent to 'dotnet pack' command).
+			This doesn't apply to Projects with IsPackable=false (like Tests projects) -->
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+
+	<Target Name="NuJetStartHook" AfterTargets="BeforeCompile" >
+		<ReadLinesFromFile File="$(MSBuildThisFileDirectory)NuJetVersion.txt">
+			<Output TaskParameter="Lines" ItemName="NuJetVersionFile"/>
+		</ReadLinesFromFile>
+		<Message Importance="high"
+				 Text="This project is using NuJet %(NuJetVersionFile.Identity)! Enjoy!" />
+	</Target>
+
+
+	<ImportGroup>
+
+		<!-- __________________________________________ -->
+		<!-- Common Properties							-->
+		<!-- __________________________________________ -->
+		<!--<Import Project="props\commonProperties.props"/>-->
+
+		<!-- __________________________________________ -->
+		<!-- Check if IsLocal or not					-->
+		<!-- __________________________________________ -->
+		<Import Project="props\localOrRemote.props" />
+
+		<!-- __________________________________________ -->
+		<!-- LOCAL DEVELOPMENT section					-->
+		<!-- Only for local NuGet packages				-->
+		<!-- __________________________________________ -->
+		<Import Project="props\localDevelopment.props" />
+
+		<!-- __________________________________________ -->
+		<!-- CI/CD section								-->
+		<!-- Only for CI on pipelines					-->
+		<!-- __________________________________________ -->
+		<Import Project="props\continuousIntegration.props" />
+
+		<!-- __________________________________________ -->
+		<!-- Log Messages								-->
+		<!-- For debug purposes							-->
+		<!-- __________________________________________ -->
+		<Import Project="props\logMessages.props" />
+
+	</ImportGroup>
+
+
+	<!-- __________________________________________ -->
+	<!-- Under development/investigation			-->
+	<!-- Not ready features							-->
+	<!-- __________________________________________ -->
+
+	<!-- __________________________________________ -->
+	<!-- README section								-->
+	<!-- (Not supported in Visual Studio yet)		-->
+	<!-- __________________________________________ -->
+	<!--<PropertyGroup>-->
+	<!-- Needed to include a ReadMe: but on Azure DevOps is still not supported-->
+	<!--<PackageReadmeFile>readme.md</PackageReadmeFile>-->
+	<!--</PropertyGroup>-->
+	<!-- Needed to include a ReadMe: but on Azure DevOps is still not supported-->
+	<!--<ItemGroup>
+		<None Include="docs\readme.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>-->
+
+	<!-- Get Git branch name -->
+	<!--
+	<PropertyGroup>
+		<GitBranch>$([System.IO.File]::ReadAlltext('$(MsBuildThisFileDirectory)\.git\HEAD').Replace('ref: refs/heads/', '').Trim())</GitBranch>
+	</PropertyGroup>
+	-->
+
+
+</Project>

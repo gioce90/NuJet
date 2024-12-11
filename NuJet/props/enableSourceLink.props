@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+	<!-- __________________________________________ -->
+	<!-- Enable SourceLink							-->
+	<!-- __________________________________________ -->
+
+	<PropertyGroup>
+		<!-- Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<!-- Embed source files that are not tracked by the source control manager in the PDB -->
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<!-- Include symbol files (*.pdb) inside the .dll in the built .nupkg (does not require the PublishSymbols@2 task) -->
+		<DebugType>embedded</DebugType>
+
+		<!-- Include Portable PDB symbol files (*.pdb) in the built .nupkg (requires the PublishSymbols@2 task) -->
+		<!--<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>-->
+
+		<!-- Include symbol files (*.pdb) inside a .snupkg (requires the PublishSymbols@2 task)-->
+		<!--<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>-->
+
+		<!-- Include symbol files (*.pdb) in the built .nupkg (it doesn't seem to work) -->
+		<!--<DebugSymbols>true</DebugSymbols>
+		<DebugType>portable</DebugType>-->
+	</PropertyGroup>
+	
+	<!-- Enable SourceLink for the Package -->
+	<ItemGroup Condition="$(IsPackable) == true ">
+		<!--AzureRepos-->
+		<PackageReference Include="Microsoft.SourceLink.AzureRepos.Git" Version="8.0.0" PrivateAssets="All" />
+		
+		<!--GitHub-->
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+	</ItemGroup>
+
+</Project>

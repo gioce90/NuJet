@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+	<!-- This file needs for NuJet itself -->
+
+	<!-- __________________________________________ -->
+	<!-- Package common section						-->
+	<!-- __________________________________________ -->
+
+	<PropertyGroup>
+		<!-- Automatically generate package on build (equivalent to 'dotnet pack' command).
+			This doesn't apply to Projects with IsPackable=false (like Tests projects) -->
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+		<!--Declare the package as Development Dependency -->
+		<DevelopmentDependency>true</DevelopmentDependency>
+
+		<!-- Manifest common properties (.nuspec in the .nupkg file) -->
+		<Authors>Gioacchino Piazzolla - Gioce90</Authors>
+		<Copyright>Gioce90</Copyright>
+	</PropertyGroup>
+
+
+	<Target Name="NuJetStartPropsHook"
+			AfterTargets="BeforeCompile" >
+
+		<!-- Write NuJet version in file -->
+		<WriteLinesToFile File="build\NuJetVersion.txt"
+						  Lines="v$(Version)"
+						  Overwrite="true" />
+		<ReadLinesFromFile File="build\NuJetVersion.txt">
+			<Output TaskParameter="Lines" ItemName="NuJetVersionFile" />
+		</ReadLinesFromFile>
+		<Message Importance="high"
+				 Text="This project is using NuJet %(NuJetVersionFile.Identity)! Enjoy!!!" />
+	</Target>
+
+	
+	<!-- __________________________________________ -->
+	<!-- Import default props and targets			-->
+	<!-- __________________________________________ -->
+
+	<ImportGroup>
+
+		<!-- __________________________________________ -->
+		<!-- Check if IsLocal or not					-->
+		<!-- __________________________________________ -->
+		<Import Project="props\localOrRemote.props"/>
+
+		<!-- __________________________________________ -->
+		<!-- LOCAL DEVELOPMENT section					-->
+		<!-- Only for local NuGet packages				-->
+		<!-- __________________________________________ -->
+		<Import Project="props\localDevelopment.props"/>
+
+		<!-- __________________________________________ -->
+		<!-- CI/CD section								-->
+		<!-- Only for CI on pipelines					-->
+		<!-- __________________________________________ -->
+		<Import Project="props\continuousIntegration.props"/>
+
+		<!-- __________________________________________ -->
+		<!-- Log Messages								-->
+		<!-- For debug purposes							-->
+		<!-- __________________________________________ -->
+		<Import Project="props\logMessages.props"/>
+		
+	</ImportGroup>
+	
+</Project>

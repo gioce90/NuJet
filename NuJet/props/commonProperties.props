@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+	<!-- ______________________________________________________________ -->
+	<!-- Manifest common properties (.nuspec in the .nupkg file)		-->
+	<!-- ______________________________________________________________ -->
+
+	<PropertyGroup>
+		<Authors>Add text here</Authors>
+		<Company>Add text here</Company>
+		<Copyright>Add text here</Copyright>
+	</PropertyGroup>
+
+</Project>

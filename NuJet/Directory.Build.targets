@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+	<!-- This file needs for NuJet itself -->
+
+	<!-- Include the 'props/' folder in the project, then -->
+	<!-- all props inside  'props/' folder all copied in the 'build/' folder -->
+	<!-- The 'build/' folder is used by the Consumer project -->
+	<ItemGroup>
+		<None Include="build\*.props;build\*.targets"
+			  Pack="true"
+			  PackagePath="build\" />
+
+		<Folder Include="props\" />
+		<Content Include="props\*.props">
+			<Pack>true</Pack>
+			<PackagePath>build\props\</PackagePath>
+		</Content>
+		
+		<!--<Folder Include="targets\" />
+		<Content Include="targets\*.targets">
+			<Pack>true</Pack>
+			<PackagePath>build\targets\</PackagePath>
+		</Content>-->
+
+		<Content Include="build\*.txt">
+			<Pack>true</Pack>
+			<PackagePath>build\</PackagePath>
+		</Content>
+	
+		<!--<Content Include="build\*.txt">
+			<Pack>true</Pack>
+			<PackagePath>contentFiles\</PackagePath>
+		</Content>-->
+	</ItemGroup>
+
+</Project>

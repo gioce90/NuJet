@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project >
+
+	<!-- Deterministic builds -->
+	<PropertyGroup Condition="$(IsLocal) == false">
+		<!-- Make the build in .nupkg deterministic when built by a Azure DevOps Pipeline or GitHub Actions -->
+		<!-- While deterministic builds are enabled by default in .NET SDK projects, there is an extra 
+		property, ContinuousIntegrationBuild, to set on the build server to normalize stored file paths.
+		These should not be enabled during local dev or the debugger won’t be able to find the local source files. -->
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	</PropertyGroup>
+
+	<!-- Set a variable to use in Azure DevOps Pipelines, based on the .csproj Version property -->
+	<Target Name="SetAzureDevOpsVariables"
+			BeforeTargets="BeforeBuild"
+			Condition="$(IsPackable) == true And $(IsLocal) == false" >
+		
+		<Message Importance="high" Condition="$(TF_BUILD) == true"
+				 Text="##vso[task.setvariable variable=Version]$(Version)" />
+		
+		<!--TODO: Do the same but for GitHub Action and others-->
+		<!--<Message Importance="high" Condition="$(GITHUB_ACTIONS) == true"
+				 Text="How?" />-->
+	</Target>
+
+</Project>

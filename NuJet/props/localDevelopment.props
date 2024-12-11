@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+	
+	<Target Name="LocalDevelopment_AfterBuild"
+			AfterTargets="AfterBuild"
+			Condition="$(IsPackable) == true And $(IsLocal) == true" >
+
+		<Message Importance="normal" Text="LocalDevelopment_AfterBuild_Start" />
+
+		<!-- Set local folders addresses -->
+		<PropertyGroup>
+			<!-- Set LocalPackageOutputPath (this can be overridden by the Consumer): -->
+			<LocalPackageOutputPath
+				Condition="'$(LocalPackageOutputPath)' == ''">$(NuGetPackageRoot).localPackages</LocalPackageOutputPath>
+
+			<!--Set local suffix (this can be overridden by the Consumer): --> 
+			<LocalSuffix 
+				Condition="'$(LocalSuffix)' == ''">Local</LocalSuffix>
+
+			<!-- TODO: check if it works also in linux and MacOS -->
+			<!-- Set LocalPackageCacheFolder: -->
+			<LocalPackageCacheFolder>$(NuGetPackageRoot)$(PackageId)</LocalPackageCacheFolder>
+		</PropertyGroup>
+
+		<!-- Get local folders address - Old way to achieve this: -->
+		<!--
+		<PropertyGroup Condition="$([System.OperatingSystem]::IsWindows()) == True">
+			<LocalPackageOutputPath>$(userprofile)\.nuget\packages\.localPackages</LocalPackageOutputPath>
+		</PropertyGroup>
+		<PropertyGroup Condition="$([System.OperatingSystem]::IsMacOS()) == True Or $([System.OperatingSystem]::IsLinux()) == True">
+			<LocalPackageOutputPath>~/.nuget/packages/.localPackages</LocalPackageOutputPath>
+		</PropertyGroup>
+		-->
+
+		<!-- Override the Version property adding a "-Local" suffix -->
+		<CreateProperty Value="$(PackageVersion)-$(LocalSuffix)">
+			<Output TaskParameter="Value" PropertyName="PackageVersion" />
+		</CreateProperty>
+
+		<Message Importance="normal" Text="LocalDevelopment_AfterBuild_End" />
+
+	</Target>
+
+	
+	<Target Name="LocalDevelopment_AfterPack"
+			AfterTargets="Pack"
+			DependsOnTargets="LocalDevelopment_AfterBuild"
+			Condition="$(IsPackable) == true And $(IsLocal) == true" >
+
+		<Message Importance="normal" Text="LocalDevelopment_AfterPack_Start" />
+
+		<!--Copy the new package in a common folder -->
+		<Copy SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).nupkg"
+			  DestinationFolder="$(LocalPackageOutputPath)" >
+			<Output TaskParameter="CopiedFiles" ItemName="DestinationFolder"/>
+		</Copy>
+		<Message Importance="high" Text="Package copied in %(DestinationFolder.RelativeDir)" />
+
+		<!-- Alternatevely to the copy, we can directly pack to a common folder -->
+		<!-- 
+		<PropertyGroup Condition="$(ContinuousIntegrationBuild) == ''">
+		<PackageOutputPath>$(LocalPackageOutputPath)</PackageOutputPath>
+		</PropertyGroup>
+		-->
+
+		<!-- Remove old local Package from the Global packages folder -->
+		<!-- (Reason: when Version doesn't change, is present an old cached version) -->
+		<!-- TODO: prevent to write local packages in cache (not possible for now) -->
+		<PropertyGroup Condition="Exists('$(LocalPackageCacheFolder)\$(PackageVersion)')">
+			<DeleteCache>true</DeleteCache>
+		</PropertyGroup>
+		<!-- The follow task removes the old existing package with same Version -->
+		<!-- i.e. NuGetPackageRoot/PackageId/x.y.z-Local -->
+		<RemoveDir Condition="$(DeleteCache) == true"
+            Directories="$(LocalPackageCacheFolder)\$(PackageVersion)" >
+			<Output TaskParameter="RemovedDirectories" ItemName="RemovedFolder"  />
+		</RemoveDir>
+		<Message Importance="high"
+				 Condition="$(DeleteCache) == true"
+				 Text="Old '$(PackageId)/$(PackageVersion)' removed from the Global package folder (%(RemovedFolder.FullPath))" />
+		<Message Importance="high"
+						 Condition="$(DeleteCache) != true"
+						 Text="No need to delete '$(PackageId)/$(PackageVersion)' from the Global package folder '$(NuGetPackageRoot)'" />
+
+		<Message Importance="normal" Text="LocalDevelopment_AfterPack_End" />
+
+	</Target>
+	
+</Project>
