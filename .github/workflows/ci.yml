@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: NuJet is read to be build and pack!
+        run: echo NuJet is ready to be build and pack!
   
       # Imposta l'ambiente .NET
       - name: Setup .NET
