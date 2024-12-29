@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuJetConsumer", "NuJetConsumer\NuJetConsumer.csproj", "{4BD448ED-CD1F-4D06-859F-294F85060590}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{D2525EC5-D553-4173-8263-41D80D4A5890}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2525EC5-D553-4173-8263-41D80D4A5890}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2525EC5-D553-4173-8263-41D80D4A5890}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4BD448ED-CD1F-4D06-859F-294F85060590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4BD448ED-CD1F-4D06-859F-294F85060590}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4BD448ED-CD1F-4D06-859F-294F85060590}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4BD448ED-CD1F-4D06-859F-294F85060590}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

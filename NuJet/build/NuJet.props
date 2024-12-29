@@ -18,7 +18,7 @@
 			<Output TaskParameter="Lines" ItemName="NuJetVersionFile"/>
 		</ReadLinesFromFile>
 		<Message Importance="high"
-				 Text="This project is using NuJet %(NuJetVersionFile.Identity)! Enjoy!" />
+				 Text="[$(MSBuildProjectName)]: The project is using NuJet %(NuJetVersionFile.Identity)! Enjoy!" />
 	</Target>
 
 
