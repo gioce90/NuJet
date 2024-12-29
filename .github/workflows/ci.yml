@@ -35,4 +35,6 @@ jobs:
         with:
           dotnet-version: '8.0'
 
+      - run: dotnet restore NuJet.sln
+
       - run: dotnet build NuJet.sln
