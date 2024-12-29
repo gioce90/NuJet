@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<Version>1.0.0</Version>
+
+		<Authors>Your name</Authors>
+		<Company>Your Company name</Company>
+		
+		<Description>
+			An example of a NuJet Wrapper!
+			If you have many private nuget packages with different personalized settings, do not use NuJet directly: produce a wrapper package instead.
+			The wrapper will brings all your properties and settings in one place. 
+			And will be the only package that need to reference NuJet diretly.
+			Your packages need to reference only your personalized NuJet Wrapper!
+			Advice: you can call it as you wish, for example: My.NuJet.Wrapper or My.Company.NuJet.Wrapper.
+			In this example is called NuJetWrapper.1.0.0-Local.nupkg
+		</Description>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="NuJet" Version="0.0.1-Local">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+</Project>

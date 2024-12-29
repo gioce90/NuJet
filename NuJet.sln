@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuJet", "Nujet\NuJet.csproj", "{D2525EC5-D553-4173-8263-41D80D4A5890}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4BD448ED-CD1F-4D06-859F-294F85060590} = {4BD448ED-CD1F-4D06-859F-294F85060590}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0F6DEAEC-FAA4-4FFD-AB46-16990F79ED21}"
 	ProjectSection(SolutionItems) = preProject
@@ -12,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuJetConsumer", "NuJetConsumer\NuJetConsumer.csproj", "{4BD448ED-CD1F-4D06-859F-294F85060590}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{21BC9F3B-3354-485E-8FAA-58F8DEF17177}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01. Simple example", "01. Simple example", "{2BA81951-915D-430B-B7F5-1AED192C8477}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +37,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4BD448ED-CD1F-4D06-859F-294F85060590} = {2BA81951-915D-430B-B7F5-1AED192C8477}
+		{2BA81951-915D-430B-B7F5-1AED192C8477} = {21BC9F3B-3354-485E-8FAA-58F8DEF17177}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {88F6408F-B8D7-4A70-B43D-F1CC0E1A1D74}

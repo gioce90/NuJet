@@ -22,34 +22,34 @@
 
 	<Target Name="DisplayMessages" AfterTargets="AfterBuild" DependsOnTargets="NuJetLogLevel">
 
-		<Message Importance="$(Importance)" Text="The project $(MSBuildProjectFile) results packable"
+		<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: The project $(MSBuildProjectFile) results packable"
 				 Condition="$(IsPackable) == true" />
-		<Message Importance="$(Importance)" Text="The project $(MSBuildProjectFile) results NOT packable"
+		<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: The project $(MSBuildProjectFile) results NOT packable"
 				 Condition="$(IsPackable) != true" />
 
-		<Message Importance="$(Importance)" Text="NuGetPackageRoot = $(NuGetPackageRoot)" />
-		<Message Importance="$(Importance)" Text="LocalPackageOutputPath = $(LocalPackageOutputPath)" />
-		<Message Importance="$(Importance)" Text="LocalPackageCacheFolder = $(LocalPackageCacheFolder)" />
-		<Message Importance="$(Importance)" Text="IsLocal = $(IsLocal)" />
+		<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: NuGetPackageRoot = $(NuGetPackageRoot)" />
+		<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: LocalPackageOutputPath = $(LocalPackageOutputPath)" />
+		<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: LocalPackageCacheFolder = $(LocalPackageCacheFolder)" />
+		<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: IsLocal = $(IsLocal)" />
 
-		<Message Importance="$(Importance)" Text="NuJetLogLevel = $(NuJetLogLevel)" />
-		<Message Importance="$(Importance)" Text="Importance = $(Importance)" />
+		<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: NuJetLogLevel = $(NuJetLogLevel)" />
+		<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: Importance = $(Importance)" />
 
-		<!--<Message Importance="$(Importance)" Text="Project File Name = $(MSBuildProjectFile)" />-->
-		<!--<Message Importance="$(Importance)" Text="Project Extension = $(MSBuildProjectExtension)" />-->
-		<!--<Message Importance="$(Importance)" Text="OutputPath = $(OutputPath)" />-->
-		<!--<Message Importance="$(Importance)" Text="PackageOutputPath = $(PackageOutputPath)" />-->
-		<!--<Message Importance="$(Importance)" Text="Userprofile = $(userprofile)" />-->
-		<!--<Message Importance="$(Importance)" Text="LocalAppData = $(LocalAppData)" />-->
-		<!--<Message Importance="$(Importance)" Text="AppData = $(AppData)" />-->
-		<!--<Message Importance="$(Importance)" Text="HOMEDRIVE = $(HOMEDRIVE)" />-->
-		<!--<Message Importance="$(Importance)" Text="SYSTEMDRIVE = $(SYSTEMDRIVE)" />-->
-		<!--<Message Importance="$(Importance)" Text="GitBranch = $(GitBranch)" />-->
-		<!--<Message Importance="$(Importance)" Text="OS = $(OS)" />-->
-		<!--<Message Importance="$(Importance)" Text="OperatingSystem_IsWindows = $([System.OperatingSystem]::IsWindows())" />-->
-		<!--<Message Importance="$(Importance)" Text="OperatingSystem_IsMacOS = $([System.OperatingSystem]::IsMacOS())" />-->
-		<!--<Message Importance="$(Importance)" Text="OSVersion = $([System.Environment]::OSVersion)" />-->
-		<!--<Message Importance="$(Importance)" Text="OperatingSystem_IsOSPlatform_Windows = $([System.OperatingSystem]::IsOSPlatform('Windows'))" />-->
+		<!--<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: Project File Name = $(MSBuildProjectFile)" />-->
+		<!--<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: Project Extension = $(MSBuildProjectExtension)" />-->
+		<!--<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: OutputPath = $(OutputPath)" />-->
+		<!--<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: PackageOutputPath = $(PackageOutputPath)" />-->
+		<!--<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: Userprofile = $(userprofile)" />-->
+		<!--<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: LocalAppData = $(LocalAppData)" />-->
+		<!--<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: AppData = $(AppData)" />-->
+		<!--<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: HOMEDRIVE = $(HOMEDRIVE)" />-->
+		<!--<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: SYSTEMDRIVE = $(SYSTEMDRIVE)" />-->
+		<!--<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: GitBranch = $(GitBranch)" />-->
+		<!--<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: OS = $(OS)" />-->
+		<!--<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: OperatingSystem_IsWindows = $([System.OperatingSystem]::IsWindows())" />-->
+		<!--<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: OperatingSystem_IsMacOS = $([System.OperatingSystem]::IsMacOS())" />-->
+		<!--<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: OSVersion = $([System.Environment]::OSVersion)" />-->
+		<!--<Message Importance="$(Importance)" Text="[$(MSBuildProjectName)]: OperatingSystem_IsOSPlatform_Windows = $([System.OperatingSystem]::IsOSPlatform('Windows'))" />-->
 
 	</Target>
 
