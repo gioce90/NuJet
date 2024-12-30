@@ -46,8 +46,8 @@ jobs:
       
       # Pack the NuGet package
       - name: Pack the NuGet package
-        run: dotnet pack NuJet.sln --output ./artifacts
-      # run: dotnet pack NuJet.sln --configuration Release --output ./artifacts
+        run: dotnet pack NuJet --output ./artifacts
+      # run: dotnet pack NuJet --configuration Release --output ./artifacts
 
       # Publish the NuGet package
       - name: Publish to NuGet
