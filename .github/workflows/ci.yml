@@ -29,12 +29,26 @@ jobs:
       - name: Run a one-line script
         run: echo NuJet is ready to be build and pack!
   
-      # Imposta l'ambiente .NET
+      # Set .NET environment
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0'
+      
+      # Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore NuJet
+      
+      # Build the solution
+      - name: Build solution
+        run: dotnet build NuJet
+      # --configuration Release
+      
+      # Pack the NuGet package
+      - name: Pack the NuGet package
+        run: dotnet pack NuJet.sln --output ./artifacts
+      # run: dotnet pack NuJet.sln --configuration Release --output ./artifacts
 
-      - run: dotnet restore NuJet
-
-      - run: dotnet build NuJet
+      # Publish the NuGet package
+      - name: Publish to NuGet
+        run: dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
